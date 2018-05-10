@@ -1,0 +1,32 @@
+{
+  "restaurants": [
+    {
+      "name": "",
+      "address": "",
+
+      "phone": "",
+      "imageUrl": "",
+      "menu": [
+        {
+          "display Name": "",
+          "items": [
+            {
+              "name": "",
+              "price": "",
+              "options": ["quantity","size"],
+              "id":
+            },
+            {
+              "name": "",
+              "price": "",
+              "options": ["quantity","size"],
+              "id":
+
+            }
+          ]
+        }
+      ],
+
+    }
+  ]
+}

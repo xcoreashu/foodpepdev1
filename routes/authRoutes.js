@@ -1,4 +1,5 @@
 const passport = require('passport');
+const keys = require('../config/keys');
 module.exports = (app) => {
 
 //route handler
@@ -10,7 +11,19 @@ app.get(
   })
 );
 //2nd route handler to exchange the code with actual profile and email
-app.get('/auth/google/callback',passport.authenticate('google'));
+app.get('/auth/google/callback'
+,passport.authenticate('google'),
+(req,res) => {
+  res.redirect(keys.hostKey + '/restaurantsearch')
+}
+);
+
+app.get('/api/logout',(req,res) => {
+  req.logout();
+  res.redirect('/')
+}
+);
+
 app.get('/api/current_user',(req,res) => {
   res.send(req.user);
 })
