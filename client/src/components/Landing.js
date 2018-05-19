@@ -1,5 +1,6 @@
 
 import React from 'react';
+import connect from 'react-redux';
 import { Container, Row, Col } from 'mdbreact';
 import Lightbox from 'react-image-lightbox';
 import './Landing.css';
@@ -41,6 +42,8 @@ class Landing extends React.Component  {
 
   render() {
     const { photoIndex, isOpen } = this.state;
+
+  
     return(
 
       <Container className="mt-5">
