@@ -4,3 +4,4 @@ export const POST_RESTAURANT = 'postRestaurants';
 export const DELETE_RESTAURANT = 'deleteRestaurants';
 export const UPDATE_RESTAURANT = 'updateRestaurants';
 export const ADD_TO_CART = 'addToCart';
+export const DELETE_CART_ITEM = 'deleteCartItem';

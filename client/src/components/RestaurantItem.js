@@ -3,16 +3,37 @@ import React, {Component } from 'react';
 import { Row, Col, Card, CardBody, Button } from 'mdbreact';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addToCart } from '../actions/cartActions';
+import { addToCart,updateCart } from '../actions/index.js';
 
 class RestaurantItem extends Component {
   handleCart() {
     const restaurant = [...this.props.cart,{
-      id:this.props.id,
+      _id:this.props._id,
       title:this.props.title,
       description:this.props.description,
-      price:this.props.price
+      price:this.props.price,
+      quantity:1
     }]
+    // CHECK IF CART IS empty
+    if (this.props.cart.length > 0) {
+      // CART IS NOT empty
+      let _id = this.props._id;
+      let cartIndex = this.props.cart.findIndex(function(cart) {
+        return cart._id === _id;
+      })
+      // IF RETURNS -1 THERE ARE NO ITEMS WITH SAME  ID //
+      if (cartIndex === -1) {
+        this.props.addToCart(restaurant)
+      } else {
+        // We NEED TO UPDATE QUANTITY //
+        this.props.updateCart(_id,1)
+      }
+    } else {
+      // CART IS EMPTY
+      this.props.addToCart(restaurant);
+    }
+
+
   }
   render() {
     return(
@@ -45,7 +66,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    addToCart:addToCart
+    addToCart:addToCart,
+    updateCart:updateCart
   },dispatch)
 
 }

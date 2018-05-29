@@ -6,7 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Landing from './Landing';
 import RestaurantList from './RestaurantList';
-//import RestaurantForm from './RestaurantForm';
+import RestaurantForm from './RestaurantForm';
 const ChooseOrder = () => <h2>ChooseOrder</h2>
 const PlaceOrder = () => <h2>PlaceOrder</h2>
 const OrderPlaced = () => <h2>OrderPlaced</h2>
@@ -24,7 +24,8 @@ componentDidMount() {
 
     <BrowserRouter>
     <div>
-    <Header />
+    <Header
+    cartItemsNumber = {this.props.totalQty} />
     <Route exact path = "/" component = {Landing} />
 
 <Route exact path = "/restaurantsearch" component = {RestaurantList} />
@@ -43,4 +44,9 @@ componentDidMount() {
   );
 }
 }
-export default connect (null , actions)(App);
+function mapStateToProps(state){
+  return {
+    totalQty: state.cart.totalQty
+  }
+}
+export default connect (mapStateToProps , actions)(App);

@@ -1,19 +1,20 @@
-
+import {GET_RESTAURANT,POST_RESTAURANT,DELETE_RESTAURANT,UPDATE_RESTAURANT} from '../actions/types';
 // RESTAURANT REDUCERS
 export  function restaurantReducer(state = {
  restaurants: [
-/*    {
- id:1,
+    {
+ _id: 1,
  title: 'this is title 1',
  description:'this is description 1',
  price: 33.32
  },
  {
- id:2,
+ _id: 2,
  title: 'this is title 2',
  description:'this is description 2',
  price: 44.34
-} */
+}
+
   ]
 } , action) {
   switch (action.type) {
@@ -45,7 +46,7 @@ export  function restaurantReducer(state = {
   case "UPDATE_RESTAURANT":
   // create a copy of the current array of restaurants
   const currentRestaurantToUpdate = [...state.restaurants]
-  // Determine at which indexin restaurant array is the restaurant to be deleted
+  // Determine at which index in restaurant array is the restaurant to be deleted
   const indexToUpdate = currentRestaurantToUpdate.findIndex(
     function(restaurant) {
       return restaurant._id === action.payload._id

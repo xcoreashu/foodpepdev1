@@ -11,8 +11,10 @@ import logger from 'redux-logger';
 import App from './components/App';
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
-import { postRestaurants,deleteRestaurants,updateRestaurants } from './actions/index.js';
+import { postRestaurants,deleteRestaurants,updateRestaurants, addToCart,deleteCartItem,updateCart} from './actions/index.js';
 import RestaurantList from './components/RestaurantList';
+import RestaurantForm from './components/RestaurantForm';
+import Cart from './components/Cart';
 
 
 const middleware = applyMiddleware(logger);

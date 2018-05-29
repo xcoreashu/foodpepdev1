@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink, Fa, Container, Mask, View } from 'mdbreact';
+import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink, Fa, Container, Mask, View ,Badge} from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './Header.css'
 
@@ -62,7 +62,7 @@ onClick(){
             <Router>
                 <Navbar  color="transparent" dark expand="md" fixed = "top"  scrolling>
                     <NavbarBrand href="/">
-                <a href="#" class="pull-left"><img src="https://lh4.googleusercontent.com/miNyczQj6gaTnLc2zlaT7x8lksbPOFaMiq2fsHiQEjKCxBmGwtkGISBW-rninGRQDiL-yoBUgl_3SleAh1we=w1366-h662" alt="" /></a>
+                <a href="#" className="pull-left"><img src="https://lh6.googleusercontent.com/shKUhnb9a-JE1hRvc1elj68Jpk_tE93hBsjllNl0yhK_fa44EyME8mxbK2n5wLRFhY0BSDfhgAvScJdJsrl0=w1366-h662" alt="" /></a>
 
 
 
@@ -87,7 +87,11 @@ onClick(){
                         <NavbarNav right>
                           <NavItem active>
 
+
                           <a className="gl-ic ml-0"><i className="fa fa-google white-text mr-lg-4 fa-2x"> </i></a>
+                          </NavItem>
+                          <NavItem active>
+                          <i className = "fa fa-shopping-cart white-text mr-lg-4 fa-2x">{(this.props.cartItemsNumber > 0)?(<Badge color = "red">{this.props.cartItemsNumber}</Badge>):('')}</i>
                           </NavItem>
                           <NavItem>
                             {this.renderContent()}
@@ -100,7 +104,7 @@ onClick(){
             <View style={view}>
 
               <Mask overlay="purple-light" style={{flexDirection: 'column'}} className="flex-center  text-white text-center">
-              <img src="https://lh4.googleusercontent.com/miNyczQj6gaTnLc2zlaT7x8lksbPOFaMiq2fsHiQEjKCxBmGwtkGISBW-rninGRQDiL-yoBUgl_3SleAh1we=w1366-h662" alt="" />
+              <img src="https://lh6.googleusercontent.com/shKUhnb9a-JE1hRvc1elj68Jpk_tE93hBsjllNl0yhK_fa44EyME8mxbK2n5wLRFhY0BSDfhgAvScJdJsrl0=w1366-h662" alt="" />
 
                 <h5>Place order in three Easy Steps</h5>
                 <p>We are a team of dedicated humans aim to serve the best to our Customers</p><br/>

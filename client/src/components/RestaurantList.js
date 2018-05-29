@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import {  Col,Container,Row } from 'mdbreact';
+import { Col,Container,Row } from 'mdbreact';
 import { bindActionCreators } from 'redux';
 import {getRestaurants } from '../actions/index.js';
 import RestaurantItem from './RestaurantItem';
@@ -32,9 +32,10 @@ class RestaurantList extends Component {
     const restaurantsList = this.props.restaurants.map(function(restaurantsArr)  {
 
     return(
-  <Col xs = "12" sm ="6" md = "4" key={restaurantsArr.id}>
+  <Col xs = "12" sm ="6" md = "4" key = {restaurantsArr._id} >
 <RestaurantItem
-id = {restaurantsArr.id}
+
+_id = {restaurantsArr._id}
 title = {restaurantsArr.title}
 description = {restaurantsArr.description}
 price = {restaurantsArr.price}
@@ -46,8 +47,14 @@ price = {restaurantsArr.price}
   return (
     <Row>
     <Container>
+    <Row>
+
+    <Col xs = "12" sm = "6">
     <Cart />
+    </Col>
+    </Row>
     </Container>
+
     <Container>
     <Col xs = "12" sm = "6">
     <RestaurantForm />
@@ -55,6 +62,8 @@ price = {restaurantsArr.price}
     <Row>
     {restaurantsList}
     </Row>
+
+
     </Container>
     </Row>
   )
