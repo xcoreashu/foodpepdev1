@@ -16,9 +16,14 @@ export function getRestaurants(restaurant) {
 }
 
 export function postRestaurants(restaurant) {
-  return {
-    type: "POST_RESTAURANT",
-    payload: restaurant
+  return function(dispatch) {
+    axios.post('/restaurants',restaurant)
+    .then (function(response){
+      dispatch({type: "POST_RESTAURANT",payload:response.data})
+    })
+    .catch(function(err){
+      dispatch({type:"POST_RESTAURANT_REJECTED",payload:"there was an error while posting a new restaurant sorry for the incovenience caused "})
+    })
   }
 }
 export function deleteRestaurants(id) {

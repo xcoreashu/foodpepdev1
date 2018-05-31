@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
-require('./models/User');
+require('./models/user');
 require('./services/passport');
+require('./models/restaurants');
+mongoose.Promise = global.Promise;
 
 
 mongoose.connect(keys.mongoURI);
@@ -20,12 +22,21 @@ app.use(passport.initialize());
 app.use(passport.session());
 // immediately call the app after requiring authroutes to perform the function
 require('./routes/authRoutes')(app);
+require('./routes/restaurantRoutes')(app);
+if (process.env.NODE_ENV === 'production'){
 /*
-app.get('/', (req,res) => {
-  res.send({ hi: 'there' });
-});
+Express will serve up production assets
+like our main.js file
 */
-
+app.use(express.static('client/build'));
+/* express will serve up index.html file
+if it doesn't recognize the route
+*/
+const path = require('path');
+app.get('*',(req,res) => {
+  res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+});
+}
 
 
 

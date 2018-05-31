@@ -16,9 +16,7 @@ import RestaurantList from './components/RestaurantList';
 import RestaurantForm from './components/RestaurantForm';
 import Cart from './components/Cart';
 
-
-const middleware = applyMiddleware(logger);
-const store = createStore(reducers, {} , applyMiddleware(reduxThunk));
+const store = createStore(reducers, {} , applyMiddleware(reduxThunk,logger));
 store.subscribe( () => {
   console.log('current state is: ',store.getState());
 })
