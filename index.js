@@ -9,7 +9,9 @@ require('./models/restaurants');
 mongoose.Promise = global.Promise;
 
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI),{
+  useMongoClient:true
+};
 
 const app = express();
 app.use(
