@@ -17,7 +17,7 @@ export function getRestaurants(restaurant) {
 
 export function postRestaurants(restaurant) {
   return function(dispatch) {
-    axios.post('/restaurants',restaurant)
+    axios.post('/api/restaurants',restaurant)
     .then (function(response){
       dispatch({type: "POST_RESTAURANT",payload:response.data})
     })

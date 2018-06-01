@@ -1,13 +1,26 @@
 const express = require('express');
+const requireLogin = require('../middlewares/requireLogin');
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 const restaurants = mongoose.model('restaurants');
 module.exports = (app) => {
-  app.post('/restaurants',(req,res) => {
-const restaurant = req.body;
+  app.get('/api/restaurants' , function(req,res){
+    restaurants.find(function(err,restaurants){
+      if (err) {
+      throw err;
 
-Restaurants.create(
-  restuarant , function(err,restaurants){
+    }
+    res.json(restaurants);
+
+  })
+  });
+
+
+  app.post('/api/restaurants',(req,res) => {
+var restaurant = req.body;
+
+restaurants.create(
+  restaurant , function(err,restaurants){
     if (err) {
       throw err;
     }
@@ -15,20 +28,11 @@ Restaurants.create(
   })
 });
 
-app.get('/restaurants' , function(req,res){
-  Restaurants.find(function(err,restaurants){
-    if (err) {
-    throw err;
 
-  }
-  res.json(restaurants);
-
-})
-});
-app.delete('/restaurants/:_id',function(req,res){
+app.delete('/api/restaurants/:_id',function(req,res){
   var query = {_id: req.params._id};
 
-  Restaurants.remove(query , function(err,restaurants){
+  restaurants.remove(query , function(err,restaurants){
     if (err) {
       throw err;
     }
@@ -36,7 +40,7 @@ app.delete('/restaurants/:_id',function(req,res){
   })
 });
 
-app.put('/restaurants/:_id',function(req,res){
+app.put('/api/restaurants/:_id',function(req,res){
   var restaurant = req.body;
   var query = {_id:req.params._id};
   // if the field doesnt exist $set will set up a new field
@@ -50,11 +54,11 @@ app.put('/restaurants/:_id',function(req,res){
   };
   // when true returns the update ddocument
   var options = {new: true};
-  Restaurants.findOneAndUpdate(query,update,options,function(err,restaurants){
+  restaurants.findOneAndUpdate(query,update,options,function(err,restaurants){
     if (err) {
       throw err;
     }
     res.json(restuarants);
   })
 });
-}
+};

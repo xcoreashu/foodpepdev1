@@ -14,7 +14,7 @@ app.get(
 app.get('/auth/google/callback'
 ,passport.authenticate('google'),
 (req,res) => {
-  res.redirect(keys.hostKey + '/restaurantsearch')
+  res.redirect(keys.hostKey + '/restaurantsearch');
 }
 );
 

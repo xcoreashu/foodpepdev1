@@ -24,7 +24,7 @@ export  function restaurantReducer(state = {
        return {...state , restaurants:[...state.restaurants]}
        break;
        case "POST_RESTAURANT":
-       return{...state,restaurants:[...state.restaurants,...action.payload]}
+       return {...state,restaurants:[...state.restaurants,...action.payload]}
        break;
        case "POST_RESTAURANT_REJECTED":
        return{...state}

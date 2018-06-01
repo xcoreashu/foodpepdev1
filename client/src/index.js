@@ -10,13 +10,13 @@ import { createStore , applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import App from './components/App';
 import reducers from './reducers';
-import reduxThunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import { postRestaurants,deleteRestaurants,updateRestaurants, addToCart,deleteCartItem,updateCart} from './actions/index.js';
 import RestaurantList from './components/RestaurantList';
 import RestaurantForm from './components/RestaurantForm';
 import Cart from './components/Cart';
 
-const store = createStore(reducers, {} , applyMiddleware(reduxThunk,logger));
+const store = createStore(reducers, {} , applyMiddleware(thunk,logger));
 store.subscribe( () => {
   console.log('current state is: ',store.getState());
 })
