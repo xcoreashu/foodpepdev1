@@ -2,8 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 require('./models/user');
 require('./models/restaurants');
 require('./services/passport');
@@ -17,13 +20,42 @@ mongoose.connect(keys.mongoURI),{
 
 const app = express();
 app.use(bodyParser.json());
-app.use(
+app.use(cookieParser());
+var db = mongoose.connection;
+db.on('error',console.log.bind(console,'#MongoDB - connection error: '));
+/*--Set up Sessions --*/
+app.use(session({
+  secret: 'mySecretString',
+  saveUninitialized: false,
+  resave: false,
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 2},
+    keys: [keys.cookieKey],
+  store: new MongoStore({mongooseConnection: db,ttl: 2 * 24 * 60 * 60})
 
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
+})
+)
+// SAVE SESSION CART API //
+app.post('/api/cart',function(req,res){
+  var cart = req.body;
+  req.session.cart = cart;
+  req.session.save(function(err){
+    if(err){
+      throw err;
+    }
+    res.json(req.session.cart);
   })
-);
+
+});
+// GET SESSION CART api //
+app.get('/api/cart',function(req,res){
+  if (typeof req.session.cart !== 'undefined' ){
+    res.json(req.session.cart);
+  }
+});
+// End session cart set up //
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 // immediately call the app after requiring authroutes to perform the function

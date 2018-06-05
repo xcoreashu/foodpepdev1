@@ -2,7 +2,7 @@ import {GET_RESTAURANT,POST_RESTAURANT,DELETE_RESTAURANT,UPDATE_RESTAURANT} from
 // RESTAURANT REDUCERS
 export  function restaurantReducer(state = {
  restaurants: [
-    {
+    /*{
  _id: 1,
  title: 'this is title 1',
  description:'this is description 1',
@@ -14,14 +14,14 @@ export  function restaurantReducer(state = {
  description:'this is description 2',
  price: 44.34
 }
-
+*/
   ]
 } , action) {
   switch (action.type) {
     case "GET_RESTAURANT":
     // let restaurants  = state.restaurants.concat(action.payload)
     //return {restaurants}
-       return {...state , restaurants:[...state.restaurants]}
+       return {...state , restaurants:[...action.payload]}
        break;
        case "POST_RESTAURANT":
        return {...state,restaurants:[...state.restaurants,...action.payload]}

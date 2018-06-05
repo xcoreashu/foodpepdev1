@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteCartItem,updateCart } from '../actions/index.js';
+import { deleteCartItem,updateCart,getCart } from '../actions/index.js';
 import { Card , Col ,Row , Button, CardBody,ButtonGroup,Badge,Modal,ModalBody,ModalHeader,ModalFooter,ModalTitle} from 'mdbreact';
 
 class Cart extends Component {
+  componentDidMount() {
+    this.props.getCart();
+  }
 
 onDelete(_id){
   const currentRestaurantToDelete = this.props.cart;
@@ -22,11 +25,11 @@ function(cart) {
 
 }
 onIncrement(_id){
-  this.props.updateCart(_id, 1);
+  this.props.updateCart(_id, 1,this.props.cart);
 }
 onDecrement(_id, quantity){
   if(quantity > 1){
-    this.props.updateCart(_id, -1);
+    this.props.updateCart(_id, -1,this.props.cart);
   }
 }
 constructor(props) {
@@ -155,7 +158,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     deleteCartItem:deleteCartItem,
-    updateCart:updateCart
+    updateCart:updateCart,
+    getCart:getCart
   },dispatch)
 }
   export default connect(mapStateToProps,mapDispatchToProps)(Cart);

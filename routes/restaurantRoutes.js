@@ -61,4 +61,28 @@ app.put('/api/restaurants/:_id',function(req,res){
     res.json(restuarants);
   })
 });
+
+//-->GET RESTAURANT IMAGES API --> //
+app.get('/api/images',function(req,res){
+  const imgFolder = __dirname + '/client/public/images/';
+  //REQUIRE FILE SYSTEM
+  const fs = require('fs');
+  //READ ALL FILES IN THE DIRECTORY //
+  fs.readdir(imgFolder,function(err,files){
+    if (err){
+      return console.error(err);
+    }
+    // CREATE AN EMPTY ARRAY
+    const filesArr = [];
+    // ITERATE ALL IMAGES TO THE DIRECTORY AND ADD TO THE array //
+    files.forEach(function(file){
+      filesArr.push({name: file});
+
+    });
+    //SEND THE JSON RESPONSE WITH THE ARRAY //
+    res.json(filesArr);
+
+
+  })
+})
 };

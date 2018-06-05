@@ -26,7 +26,7 @@ class RestaurantItem extends Component {
         this.props.addToCart(restaurant)
       } else {
         // We NEED TO UPDATE QUANTITY //
-        this.props.updateCart(_id,1)
+        this.props.updateCart(_id,1,this.props.cart);
       }
     } else {
       // CART IS EMPTY
