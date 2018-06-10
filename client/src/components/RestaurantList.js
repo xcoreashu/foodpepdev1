@@ -38,6 +38,7 @@ class RestaurantList extends Component {
 _id = {restaurantsArr._id}
 title = {restaurantsArr.title}
 description = {restaurantsArr.description}
+images = {restaurantsArr.images}
 price = {restaurantsArr.price}
 />
   </Col>
@@ -56,13 +57,9 @@ price = {restaurantsArr.price}
     </Container>
 
     <Container>
-    <Col xs = "12" sm = "6">
-    <RestaurantForm />
-    </Col>
     <Row>
     {restaurantsList}
     </Row>
-
 
     </Container>
     </Row>

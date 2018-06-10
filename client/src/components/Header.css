@@ -16,3 +16,7 @@ navbar {
 .flex-center {
   font-family: 'Titillium Web', sans-serif;
 }
+.img-detail {
+  width: 160px;
+  height: 90px;
+}

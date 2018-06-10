@@ -7,10 +7,12 @@ import { addToCart,updateCart } from '../actions/index.js';
 
 class RestaurantItem extends Component {
   handleCart() {
-    const restaurant = [...this.props.cart,{
+    const restaurant = [...this.props.cart,
+      {
       _id:this.props._id,
       title:this.props.title,
       description:this.props.description,
+      images:this.props.images,
       price:this.props.price,
       quantity:1
     }]
@@ -40,7 +42,11 @@ class RestaurantItem extends Component {
       <Card>
       <CardBody>
       <Row>
-      <Col xs = "12" sm = "6" md="4" >
+      <Col xs = "12" sm = "4" >
+      <img src = {this.props.images} className = "img-thumbnail" alt = ""/>
+      </Col>
+
+      <Col xs = "6" sm = "8">
 
       <h6>{this.props.title}</h6>
       <p>{this.props.description}</p>

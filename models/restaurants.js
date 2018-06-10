@@ -7,6 +7,7 @@ const restaurantSchema = new  Schema({
   title: String,
   description: String,
   images: String,
-  price: Number
+  price: Number,
+  completed: Boolean
 });
 mongoose.model('restaurants',restaurantSchema);

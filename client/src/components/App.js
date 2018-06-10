@@ -7,7 +7,7 @@ import Footer from './Footer';
 import Landing from './Landing';
 import RestaurantList from './RestaurantList';
 import RestaurantForm from './RestaurantForm';
-const ChooseOrder = () => <h2>ChooseOrder</h2>
+import Order from './Order';
 const PlaceOrder = () => <h2>PlaceOrder</h2>
 const OrderPlaced = () => <h2>OrderPlaced</h2>
 
@@ -29,10 +29,11 @@ componentDidMount() {
     <Route exact path = "/" component = {Landing} />
 
 <Route exact path = "/restaurantsearch" component = {RestaurantList} />
+<Route exact path = "/admin" component = {RestaurantForm} />
 
 
 
-    <Route exact path = "/restaurantsearch/chooseorder" component = {ChooseOrder} />
+    <Route exact path = "/restaurantsearch/chooseorder" component = {Order} />
     <Route exact path = "/restaurantsearch/chooseorder/placeorder" component = {PlaceOrder} />
     <Route  path = "/restaurantsearch/chooseorder/placeorder/orderplaced" component = {OrderPlaced} />
     <Footer />

@@ -162,4 +162,5 @@ function mapDispatchToProps(dispatch) {
     getCart:getCart
   },dispatch)
 }
+
   export default connect(mapStateToProps,mapDispatchToProps)(Cart);

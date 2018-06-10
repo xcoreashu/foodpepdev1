@@ -115,3 +115,29 @@ return function (dispatch) {
 
 
     }
+
+    export function fetchOrders(){
+      return function(dispatch) {
+        axios.get('/api/orders')
+        .then(function(response){
+dispatch({type: "FETCH_ORDER_SUCCESS",payload:response.data})
+
+        })
+        .catch(function(err){
+          dispatch({type: "FETCH_ORDER_ERROR",payload:err})
+        })
+      }
+
+    }
+  export function completeOrder(orderId){
+    return function(dispatch) {
+      axios.post('/api/orders',orderId)
+      .then(function(response){
+        dispatch({
+          type: "COMPLETE_ORDER",
+          orderId:orderId
+
+      })
+      })
+    }
+  }
