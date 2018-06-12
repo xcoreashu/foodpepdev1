@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-require('./models/user');
+require('./models/User');
 require('./models/restaurants');
 
 require('./services/passport');
