@@ -62,7 +62,7 @@ onClick(){
             <Router>
                 <Navbar  color="transparent" dark expand="md" fixed = "top"  scrolling>
                     <NavbarBrand href="/">
-                <a href="#" className="pull-left"><img src="https://lh6.googleusercontent.com/Cy_q3mflDPGb4H4SpVtM_ixzkmrfR5orZJrNuppZoNoUcXzvI-UtPDsd4o9SjG7QaN7pc51f7xyn9Ls8g8ox=w1366-h662-rw" className = "img-detail" alt="" /></a>
+                <a href="#" className="pull-left"><img src="https://lh5.googleusercontent.com/0zEz-q9hzCo65KPWNNAGWlveA1P1WzqMx3z-n8xhqBV7G3EOoANa5E8zX4z3Qe_C6LiQx2_MDfTbo3PDr7zz=w1366-h662" className = "img-detail" alt="" /></a>
 
 
 
@@ -104,7 +104,7 @@ onClick(){
             <View style={view}>
 
               <Mask overlay="purple-light" style={{flexDirection: 'column'}} className="flex-center  text-white text-center">
-              <img src="https://lh6.googleusercontent.com/Cy_q3mflDPGb4H4SpVtM_ixzkmrfR5orZJrNuppZoNoUcXzvI-UtPDsd4o9SjG7QaN7pc51f7xyn9Ls8g8ox=w1366-h662-rw" className = "img-detail" alt="" />
+              <img src="https://lh5.googleusercontent.com/0zEz-q9hzCo65KPWNNAGWlveA1P1WzqMx3z-n8xhqBV7G3EOoANa5E8zX4z3Qe_C6LiQx2_MDfTbo3PDr7zz=w1366-h662" className = "img-detail" alt="" />
 
                 <h5>Place order in three Easy Steps</h5>
                 <p>We are a team of dedicated humans aim to serve the best to our Customers</p><br/>
