@@ -34,6 +34,15 @@ return {
 }
 break;
 
+case "POST_CART":
+return{
+  ...state,
+cart: [...state,action.payload],
+totalAmount: totals(action.payload).amount,
+totalQty:totals(action.payload).qty
+}
+break;
+
 default:
 
     return state;
@@ -41,6 +50,7 @@ default:
 
 }
 }
+
 //calculate totals
 export function totals(payloadArr){
   const totalAmount = payloadArr.map(function(cartArr){

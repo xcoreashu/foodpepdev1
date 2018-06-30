@@ -9,7 +9,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 require('./models/User');
 require('./models/restaurants');
-
+require('./models/CheckOut');
 require('./services/passport');
 
 mongoose.Promise = global.Promise;
@@ -78,11 +78,17 @@ app.get('/api/images',function(req,res){
 
 
 
+
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 // immediately call the app after requiring authroutes to perform the function
 require('./routes/authRoutes')(app);
 require('./routes/restaurantRoutes')(app);
+//require('./routes/orderRoutes')(app);//
+
 if (process.env.NODE_ENV === 'production'){
 /*
 Express will serve up production assets

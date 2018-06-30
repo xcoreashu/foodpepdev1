@@ -1,12 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { deleteCartItem,updateCart,getCart } from '../actions/index.js';
+import { deleteCartItem,updateCart,getCart,fetchOrders,completeOrders} from '../actions/index.js';
 import { Card , Col ,Row , Button, CardBody,ButtonGroup,Badge,Modal,ModalBody,ModalHeader,ModalFooter,ModalTitle} from 'mdbreact';
 
 class Cart extends Component {
   componentDidMount() {
     this.props.getCart();
+  }
+
+  handleOrder() {
+const cart = [...this.props.orders,
+{
+_id:this.props._id,
+title:this.props.title,
+totalQty:this.props.totalQty,
+totalAmount:this.props.totalAmount
+
+
+}]
+// check if the order is empty //
+if (this.props.orders.length > 0) {
+  this.props.completeOrders(cart)
+}
+
+
   }
 
 onDelete(_id){
@@ -32,6 +51,7 @@ onDecrement(_id, quantity){
     this.props.updateCart(_id, -1,this.props.cart);
   }
 }
+
 constructor(props) {
   super(props);
   this.state = {
@@ -48,6 +68,7 @@ close() {
 
 
   render() {
+
         if(this.props.cart[0]){
     return this.renderCart();
   }  else {
@@ -96,7 +117,6 @@ close() {
     {cartItemsList}
 
     <button type="button" className="btn btn-mdb-color" data-toggle="modal" data-target="#modalAbandonedCart">Proceed to CheckOut</button>
-
     <div className="modal fade right" id="modalAbandonedCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="false">
             <div className="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
 
@@ -129,8 +149,8 @@ close() {
                     </div>
 
 
-                    <div class="modal-footer justify-content-center">
-                        <a type="button" className="btn btn-primary" >Go to cart</a>
+                    <div className="modal-footer justify-content-center">
+              <a type="button" className="btn btn-primary" data-toggle = "modal" data-target = "#centralModalSuccess" >Go to checkout</a>
                         <a type="button" className="btn btn-outline-primary waves-effect" data-dismiss="modal">Cancel</a>
                     </div>
                 </div>
@@ -140,26 +160,66 @@ close() {
 
 
 
+        <div className="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-notify modal-success" role="document">
+
+            <div className="modal-content">
+
+                <div className="modal-header">
+                    <p className="heading lead">FoodPeP</p>
+
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" className="white-text">&times;</span>
+                    </button>
+                </div>
+
+
+                <div className="modal-body">
+                    <div className="text-center">
+                        <i className="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <p>You have ordered { this.props.title }</p>
+                        <p>Your Quantity is { this.props.totalQty}</p>
+                        <p>Pay ₹{this.props.totalAmount} by cash or by card</p>
+                    </div>
+                </div>
+
+
+                <div className="modal-footer justify-content-center">
+                    <a type="button" class="btn btn-success">Order now <i class="fa fa-cart ml-1"></i></a>
+                    <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No, thanks</a>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+
+
 </div>
 
 
     </Card>
     </div>
-  )
-  }
+  )}
 
 }
+
 function mapStateToProps(state) {
   return {
     cart: state.cart.cart,
-    totalAmount: state.cart.totalAmount
+    totalAmount: state.cart.totalAmount,
+    totalQty: state.cart.totalQty
+
   }
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     deleteCartItem:deleteCartItem,
     updateCart:updateCart,
-    getCart:getCart
+    getCart:getCart,
+    fetchOrders: fetchOrders,
+    completeOrders: completeOrders
+
   },dispatch)
 }
 

@@ -6,7 +6,7 @@ navbar {
 }
 @media only screen and (max-width: 768px) {
   .navbar {
-      background-color: #4285F4;
+      background-color: black;
   }
 }
 .image-responsive {
@@ -19,4 +19,7 @@ navbar {
 .img-detail {
   width: 160px;
   height: 90px;
+}
+.admin{
+  padding-left: 50px;
 }

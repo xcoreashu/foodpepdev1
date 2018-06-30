@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 import { RestaurantItem } from './RestaurantItem';
 import RestaurantList from './RestaurantList';
-import { postRestaurants,deleteRestaurants,getRestaurants } from '../actions/index.js';
+import Orders from './Orders';
+import { postRestaurants,deleteRestaurants,getRestaurants,resetButton } from '../actions/index.js';
 import axios from 'axios';
 
 class RestaurantForm extends Component {
@@ -50,6 +51,14 @@ toggle() {
     })
   }
 
+  resetForm() {
+    this.props.resetButton();
+  title:  findDOMNode(this.refs.title).value = '';
+  description:   findDOMNode(this.ref.description).value = '';
+  price:  findDOMNode(this.refs.price).value = '';
+    this.setState({img: ''});
+  }
+
 
   render() {
     const imgList = this.state.images.map(function(imgArr,i){
@@ -89,13 +98,15 @@ toggle() {
     <input type = "text" className = "form-control" id = "description" placeorder = "description" ref = "description" />
     <label for = "formgroupcuisinesinput">Cost for Two</label>
     <input type = "number" className = "form-control" id = "price" placeholder = "cost-for-two" ref = "price" />
-      {RestaurantList}
+    </div>
+
+      </form>
     <div className = "text-center">
-    <Button onClick={this.handleSubmit.bind(this)} color = "deep-orange">Add</Button>
+    <Button onClick={(!this.props.msg)?(this.handleSubmit.bind(this)):(this.resetForm.bind(this))} color = {(!this.props.color)?("primary"):(this.props.color)}>{(!this.props.msg)?("Save restaurant"):(this.props.msg)}</Button>
+    <Orders />
 
   </div>
-  </div>
-      </form>
+
       </Card>
       </Col>
       </Row>
@@ -108,10 +119,20 @@ toggle() {
     )
   }
 }
+function mapStateToProps(state){
+  return {
+
+    restaurants:state.restaurants.restaurants,
+    msg: state.restaurants.msg,
+    color:state.restaurants.color
+  }
+
+}
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
   postRestaurants,
-  getRestaurants
+  getRestaurants,
+  resetButton
 } , dispatch)
 }
 export default connect(null,mapDispatchToProps)(RestaurantForm);

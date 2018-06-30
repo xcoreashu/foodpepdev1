@@ -9,7 +9,7 @@ class Landing extends Component {
       <Container>
         <section className="my-5">
           <h2 className="h1-responsive font-weight-bold text-center my-5">Why is it so great?</h2>
-          <p className="lead grey-text w-responsive text-center mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+          <p className="lead blue-text  w-responsive text-center mx-auto mb-5 font-weight-bold">"FoodPeP is a food ordering and delivery company based out of Bhubaneswar,Odisha. FoodPeP was inspired by the thought of providing a complete food ordering and delivery solution from the best neighbourhood restaurants to the urban foodie. A single window for ordering from a wide range of restaurants, we have our own exclusive fleet of delivery personnel to pickup orders from restaurants and deliver it to customers . Having our own fleet gives us the flexibility to offer customers a no minimum order policy on any restaurant and accept online payments for all partner restaurants that we work with. Our delivery personnel carry one order at a time which ensures we get reliable and fast deliveries."</p>
           <img className = "img-fluid" src = "https://github.com/xcoreashu/foodpep/blob/master/restaurant%20(1)2345-01%20(1).jpg?raw=true" alt = "foodpepdelv" />
           <Row>
             <Col md="4">
@@ -42,7 +42,7 @@ class Landing extends Component {
               </Row>
             </Col>
             <Col md="4" className="text-name">
-              <img className="img-fluid" src="https://lh3.googleusercontent.com/LMp9hxfNGejfVdnJZA-LlBWGJiZSbUGQ275eepxBjrh26N60GPbeEoDc01hfh_3yXxnwrGm2it2WX8M3232w=w1366-h662" alt="Sample image"  />
+            
             </Col>
             <Col md="4">
               <Row className="mb-3">

@@ -24,13 +24,15 @@ export  function restaurantReducer(state = {
        return {...state , restaurants:[...action.payload]}
        break;
        case "POST_RESTAURANT":
-       return {...state,restaurants:[...state.restaurants,...action.payload]}
+       return {...state,restaurants:[...state.restaurants,...action.payload],
+       msg: 'Saved Click to Continue!',color: 'primary'}
        break;
        case "POST_RESTAURANT_REJECTED":
-       return{...state}
+       return{...state,msg:'Please Try again',color: 'danger'}
        break;
        case "RESET_BUTTON":
-       return{...state}
+       return{...state,msg:null,color:'primary'}
+       break;
        case "DELETE_RESTAURANT":
        // create a copy of current array of restaurants
        const currentRestaurantToDelete = [...state.restaurants]
@@ -46,7 +48,7 @@ export  function restaurantReducer(state = {
   case "UPDATE_RESTAURANT":
   // create a copy of the current array of restaurants
   const currentRestaurantToUpdate = [...state.restaurants]
-  // Determine at which index in restaurant array is the restaurant to be deleted
+  // Determine at which index in restaurant array is the restaurant to be updated
   const indexToUpdate = currentRestaurantToUpdate.findIndex(
     function(restaurant) {
       return restaurant._id === action.payload._id

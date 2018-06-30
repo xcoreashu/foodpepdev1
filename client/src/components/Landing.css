@@ -3,3 +3,6 @@
   text-align: center;
   background-color: inherit;
 }
+.lead blue-text  w-responsive text-center mx-auto mb-5 {
+  font-style: italic;
+}

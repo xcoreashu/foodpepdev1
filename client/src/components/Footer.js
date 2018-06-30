@@ -41,7 +41,7 @@ this.setState({
           <Row>
           <Col md="8">
           <div>
-          <form action = "https://formspree.io/youremail@example.com" method = "POST">
+          <form action = "https://formspree.io/connorashutosh@gmail.com" method = "POST">
 
     <p className="h5 text-center mb-4">Write to us</p>
     <Input label="Your name" icon="user" group type="email" validate error="wrong" success="right"/>
@@ -57,9 +57,7 @@ this.setState({
           <li className = "mt-4"><i className = "fa fa-map-marker indigo-text fa-2x"></i>
           <p className = "mt-2">SOACH TBI,ITER,SIKSHA O ANUSANDHAN,BHUBANESWAR</p>
           </li>
-          <li className = "mt-4"><i className = "fa fa-phone indigo-text fa-2x"></i>
-          <p className = "mt-2">+91234567890</p>
-          </li>
+
           <li className = "mt-4"><i className = "fa fa-envelope indigo-text fa-2x"></i>
           <p className = "mt-2">career.foodpep@gmail.com</p>
           <li className = "mt-4">

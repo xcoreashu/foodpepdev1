@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER,GET_RESTAURANT,DELETE_RESTAURANT,UPDATE_RESTAURANT,POST_RESTAURANT,ADD_TO_CART,UPDATE_CART,DELETE_CART_ITEM } from './types';
+import { FETCH_USER,GET_RESTAURANT,DELETE_RESTAURANT,UPDATE_RESTAURANT,POST_RESTAURANT,ADD_TO_CART,UPDATE_CART,DELETE_CART_ITEM,GET_ITEM,POST_ITEM,DELETE_ITEM,UPDATE_ITEM,FETCH_ORDER_SUCCESS,COMPLETE_ORDER,RESET_BUTTON } from './types';
 
 
 export const fetchUser = () => async dispatch =>  {
@@ -50,6 +50,51 @@ export function deleteRestaurants(id) {
 
     }
   }
+
+export function getItems() {
+  return function(dispatch) {
+    axios.get('/api/items')
+    .then(function(response){
+      dispatch({type: "GET_ITEM",payload:response.data })
+    })
+    .catch(function(err){
+      dispatch({type: "GET_ITEM_REJECTED",payload: err})
+    })
+  }
+}
+
+export function postItems(item) {
+  return function(dispatch) {
+    axios.post('/api/items', item)
+    .then(function(response){
+      dispatch({type: "POST_ITEM",payload:response.data })
+    })
+    .catch(function(err){
+      dispatch({type:"POST_ITEM_REJECTED",payload: "There was an error for posting a new item for the restaurant"})
+    })
+  }
+}
+export function deleteItems(id) {
+  return function(dispatch){
+    axios.delete('/api/items' + id)
+    .then(function(response){
+      dispatch({type: "DELETE_ITEM",payload: id})
+
+    })
+    .catch(function(err){
+      dispatch({type: "DELETE_ITEM_REJECTED",payload: err})
+    })
+  }
+}
+
+export function updateItems(item){
+  return {
+    type: "UPDATE_ITEM",
+    payload: item
+  }
+}
+
+
   export function getCart(){
     return function(dispatch){
       axios.get('/api/cart')
@@ -116,6 +161,18 @@ return function (dispatch) {
 
     }
 
+export function postCart(cart) {
+  return function (dispatch) {
+    axios.post('/api/cart',cart)
+    .then(function(response){
+      dispatch({type: "POST_CART",payload:response.data})
+    })
+    .catch(function(err){
+      dispatch({type: "POST_CART_REJECTED",msg: 'error when posting the item from the cart'})
+    })
+  }
+}
+
     export function fetchOrders(){
       return function(dispatch) {
         axios.get('/api/orders')
@@ -129,15 +186,24 @@ dispatch({type: "FETCH_ORDER_SUCCESS",payload:response.data})
       }
 
     }
-  export function completeOrder(orderId){
+
+
+  export function completeOrders(orders){
     return function(dispatch) {
-      axios.post('/api/orders',orderId)
+      axios.post('/api/orders',orders)
       .then(function(response){
         dispatch({
-          type: "COMPLETE_ORDER",
-          orderId:orderId
+          type: "COMPLETE_ORDER",payload:response.data})
 
       })
+      .catch(function(err){
+        dispatch({type: "COMPLETE_ORDER_REJECTED",payload:err })
       })
+    }
+  }
+
+  export function resetButton(){
+    return {
+      type: "RESET_BUTTON"
     }
   }

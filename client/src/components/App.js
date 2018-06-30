@@ -7,8 +7,9 @@ import Footer from './Footer';
 import Landing from './Landing';
 import RestaurantList from './RestaurantList';
 import RestaurantForm from './RestaurantForm';
-import Order from './Order';
-const PlaceOrder = () => <h2>PlaceOrder</h2>
+import Order from './Orders';
+import CheckoutNew from './CheckoutNew';
+import TeamPage from './aboutUs';
 const OrderPlaced = () => <h2>OrderPlaced</h2>
 
 class App extends Component {
@@ -31,10 +32,10 @@ componentDidMount() {
 <Route exact path = "/restaurantsearch" component = {RestaurantList} />
 <Route exact path = "/admin" component = {RestaurantForm} />
 
-
+<Route exact path = "/aboutus" component = {TeamPage} />
 
     <Route exact path = "/restaurantsearch/chooseorder" component = {Order} />
-    <Route exact path = "/restaurantsearch/chooseorder/placeorder" component = {PlaceOrder} />
+    <Route exact path = "/restaurantsearch/chooseorder/placeorder" component = {CheckoutNew} />
     <Route  path = "/restaurantsearch/chooseorder/placeorder/orderplaced" component = {OrderPlaced} />
     <Footer />
 

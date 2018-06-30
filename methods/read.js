@@ -1,4 +1,4 @@
-const express = require('express');
+/* const express = require('express');
 const keys = require('../config/keys');
 const requireLogin = require('../middlewares/requireLogin');
 const mongoose = require('mongoose');
@@ -13,3 +13,4 @@ const restaurants = mongoose.model('restaurants');
    });
  };
  module.exports = read;
+ */
