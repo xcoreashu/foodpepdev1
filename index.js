@@ -9,7 +9,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 require('./models/User');
 require('./models/restaurants');
-require('./models/CheckOut');
+require('./models/Checkout');
 require('./services/passport');
 
 mongoose.Promise = global.Promise;
